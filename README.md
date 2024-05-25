@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pixlon
+
+Pixlon is a Next.js application designed to allow admins to upload and manage profile pictures, banners, and other related media that can be downloaded by visitors. This project uses Prisma with MongoDB for data management, NextAuth for authentication, and Docker for containerization.
+
+## Features
+
+- User authentication using NextAuth
+- Image upload and management
+- Prisma ORM for database interactions
+- MongoDB as the database
+- Docker for containerization
+
+## Prerequisites
+
+- Node.js
+- Docker and Docker Compose
+- MongoDB
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/pixlon.git
+cd pixlon
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### 3. Environment Variables
 
-## Learn More
+Create a `.env.local` file in the root of the project and add the following environment variables:
 
-To learn more about Next.js, take a look at the following resources:
+```plaintext
+DATABASE_URL="mongodb://root:example@mongo:27017/mydatabase?authSource=admin"
+NEXTAUTH_URL="http://localhost:3000"
+IMAGE_UPLOAD_DIR="/app/public/uploads"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Docker Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Ensure Docker and Docker Compose are installed on your machine. Then, build and start the Docker containers:
 
-## Deploy on Vercel
+```bash
+docker-compose build
+docker-compose up
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 5. Access the Application
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The application will be available at `http://localhost:3000`.
+
+## Project Structure
+
+- `app/` - Contains the Next.js pages
+- `app/api/` - Contains the API routes
+- `lib/` - Contains configuration files and utility functions
+- `models/` - Contains Mongoose models
+- `prisma/` - Contains Prisma schema
+- `public/uploads/` - Directory to store uploaded images
+
+## API Endpoints
+
+### Image Upload
+
+- **Endpoint**: `POST /api/upload`
+- **Description**: Handles image uploads
+- **Request Body**: `file` (multipart/form-data)
+
+### Create Admin User
+
+- **Endpoint**: `POST /api/admin/create`
+- **Description**: Creates an admin user
+- **Request Body**:
+  ```json
+  {
+    "username": "admin",
+    "password": "password123"
+  }
+  ```
+
+## Development
+
+### Running Locally
+
+To run the application locally without Docker:
+
+1. Ensure MongoDB is running locally or adjust `DATABASE_URL` in `.env.local`.
+2. Install dependencies and run the development server:
+
+```bash
+npm install
+npm run dev
+```
+
+### Building for Production
+
+To create a production build:
+
+```bash
+npm run build
+npm start
+```
+
+## Troubleshooting
+
+### Common Issues
+
+- **Container Restarting**: Ensure the `next build` command runs successfully during Docker image build.
+- **Environment Variables**: Verify that all required environment variables are correctly set in `.env.local`.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## Acknowledgments
+
+- [Next.js](https://nextjs.org/)
+- [Prisma](https://www.prisma.io/)
+- [MongoDB](https://www.mongodb.com/)
+- [NextAuth](https://next-auth.js.org/)
+- [Docker](https://www.docker.com/)
