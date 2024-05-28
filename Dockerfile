@@ -16,6 +16,9 @@ COPY . .
 # Build the Next.js app
 # RUN npm run build
 
+# Set the working directory
+WORKDIR /app
+
 # Expose the port that the app runs on
 EXPOSE 3000
 
