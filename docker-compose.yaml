@@ -20,14 +20,14 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=production
       - DATABASE_URL=mongodb://root:example@mongo:27017/mydatabase?authSource=admin
       - NEXTAUTH_URL=http://localhost:3000
       - IMAGE_UPLOAD_DIR=/app/public/uploads
     depends_on:
       - mongo
     volumes:
-      - ./public/uploads:/app/public/uploads
+      - ./:/app
+      
 
 volumes:
   mongo-data:
