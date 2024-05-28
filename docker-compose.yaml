@@ -1,17 +1,24 @@
 version: '3.8'
 
 services:
-  mongo:
-    image: mongo:latest
-    container_name: pixlon-db
+
+  postgresql:
+    image: postgres
+    container_name: pixlon-postgresql
     restart: 'on-failure'
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
     ports:
-      - "27017:27017"
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=bhulgaya
+      - POSTGRES_DB=pixlon
     volumes:
-      - mongo-data:/data/db
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d pixlon"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   app:
     build: .
@@ -20,15 +27,15 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=production
-      - DATABASE_URL=mongodb://root:example@mongo:27017/mydatabase?authSource=admin
+      - DATABASE_URL=postgresql://root:bhulgaya@postgresql:5432/pixlon
       - NEXTAUTH_URL=http://localhost:3000
       - IMAGE_UPLOAD_DIR=/app/public/uploads
     depends_on:
-      - mongo
+      postgresql:
+        condition: service_healthy
     volumes:
-      - ./public/uploads:/app/public/uploads
+      - ./:/app
+      
 
 volumes:
-  mongo-data:
-  nextjs-images:
+  postgres-data:
