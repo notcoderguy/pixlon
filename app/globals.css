@@ -74,3 +74,48 @@
     @apply bg-background text-foreground;
   }
 }
+
+.background-design {
+  --s: 6px; /* control the size*/
+  --c1: #112227;
+  --c2: #4f46e5;
+  
+  --g:#0000 66%,var(--c1) 68% 98%,#0000;
+  background:
+    radial-gradient(30% 30% at 0%   30%,var(--g))
+     var(--s) calc(9*var(--s)),
+    radial-gradient(30% 30% at 100% 30%,var(--g))
+     var(--s) calc(-1*var(--s)),
+    radial-gradient(30% 30% at 30% 100%,var(--g))
+     calc(10*var(--s)) 0,
+    radial-gradient(30% 30% at 30% 0%  ,var(--g))
+     var(--c2);
+  background-size: calc(20*var(--s)) calc(20*var(--s));
+}
+
+/* LOADER ANIMATION */
+.loader {
+  height: 10px;
+  aspect-ratio: 4;
+  display: grid;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  grid-area: 1/1;
+  --_g: no-repeat radial-gradient(farthest-side,#000 94%,#0000);
+  background:
+    var(--_g) left,
+    var(--_g) right;
+  background-size: 25% 100%;
+  animation: loaderAnimation 1s infinite; 
+  transform: translate(var(--d,0)) rotate(0);
+}
+.loader:after {
+  --d: 37.5%;
+  animation-delay: .5s;
+}
+@keyframes loaderAnimation {
+  50%,100% {transform: translate(var(--d,0)) rotate(.5turn)}
+}
+/* LOADER ANIMATION */

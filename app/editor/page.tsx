@@ -47,7 +47,7 @@ const page = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-900 flex flex-col gap-5 justify-center items-center">
+    <div className="background-design w-full min-h-screen bg-gray-950 flex flex-col gap-5 justify-center items-center">
       <div>
         <div className="text-white text-center text-sm">logo</div>
         <h1 className="font-black text-2xl text-white tracking-widest">
@@ -56,27 +56,29 @@ const page = () => {
       </div>
 
       <form
-        className="bg-gray-100 rounded-xl py-16 px-10 flex flex-col gap-5 w-[500px] items-center"
+        className="bg-gray-100 rounded-xl py-16 px-10 flex flex-col gap-20 w-[600px] items-center justify-between"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Input
-          id="email"
-          type="email"
-          label="Email"
-          register={register}
-          error={errors}
-          required={true}
-          disabled={isLoading}
-        />
-        <Input
-          id="password"
-          type="password"
-          label="Password"
-          register={register}
-          error={errors}
-          required={true}
-          disabled={isLoading}
-        />
+        <div className="w-full flex flex-col gap-10">
+          <Input
+            id="email"
+            type="email"
+            label="Email"
+            register={register}
+            error={errors}
+            required={true}
+            disabled={isLoading}
+          />
+          <Input
+            id="password"
+            type="password"
+            label="Password"
+            register={register}
+            error={errors}
+            required={true}
+            disabled={isLoading}
+          />
+        </div>
         <Button disabled={isLoading} fullWidth={true} type="submit">
           Sign in
         </Button>

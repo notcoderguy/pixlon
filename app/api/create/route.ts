@@ -1,12 +1,12 @@
 import bcrypt from "bcryptjs";
 
-import prisma from "@/lib/prismadb";
+import prisma from "../../../lib/prismadb";
 import { NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/route";
-import { getServerSession } from "next-auth";
+import getSession from "../../actions/getSession";
 
 export async function POST(request: Request) {
-  const session = await getServerSession(authOptions);
+  const session = await getSession();
 
   if (!session) {
     return new NextResponse("Unauthorized", { status: 401 });
