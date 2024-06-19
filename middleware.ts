@@ -8,6 +8,7 @@ export default withAuth({
 
 export const config = {
     matcher:[
-        "/editor/:path*"
+        "/editor/:path*",
+        // "/api/create/:path*"
     ]
 }
