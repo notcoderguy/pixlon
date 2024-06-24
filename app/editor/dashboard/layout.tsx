@@ -20,6 +20,9 @@ const layout = ({ children }: { children: React.ReactNode }) => {
           <li className={clsx(`text-white font-black tracking-widest text-center hover:bg-gray-800 transition-all duration-200 rounded-xl flex`,  pathname==='/editor/dashboard/create-editor' ? 'bg-gray-800' : 'bg-transparent')}>
             <Link className="px-5 py-4" href="/editor/dashboard/create-editor">Create editor</Link>
           </li>
+          <li className={clsx(`text-white font-black tracking-widest text-center hover:bg-gray-800 transition-all duration-200 rounded-xl flex`,  pathname==='/editor/dashboard/add-image' ? 'bg-gray-800' : 'bg-transparent')}>
+            <Link className="px-5 py-4" href="/editor/dashboard/add-image">Add Image</Link>
+          </li>
           <li className={clsx(`text-white font-black tracking-widest text-center hover:bg-gray-800 transition-all duration-200 rounded-xl flex`,  pathname==='/editor/dashboard/settings' ? 'bg-gray-800' : 'bg-transparent')}>
             <Link className="px-5 py-4" href="/editor/dashboard/settings">Settings</Link>
           </li>

@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     const { email, name, password } = body;
 
     if (!email || !name || !password) {
-      return new NextResponse("missing info", { status: 4000 });
+      return new NextResponse("missing info", { status: 400 });
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);

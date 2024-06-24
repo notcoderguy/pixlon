@@ -13,6 +13,5 @@ export async function GET(){
     if(!userData){
         return new NextResponse("User Not found", { status: 404 });
     }
-    console.log("Route se hoon bhai",userData);
     return NextResponse.json(userData);
 }
