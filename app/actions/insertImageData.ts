@@ -57,9 +57,9 @@ function runPythonScript(filePath: string): Promise<Metadata> {
   });
 }
 
-export async function saveImageData() {
+export async function saveImageData(dir:string) {
   console.log('Starting saveImageData function');
-  const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
+  const uploadsDir = path.join(process.cwd(), 'public', dir);
 
   const entries: Entry[] = [];
   const files = fs.readdirSync(uploadsDir);

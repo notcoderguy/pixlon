@@ -8,7 +8,7 @@ export async function POST(){
         return new NextResponse("Unauthorized", {status : 401});
     }
     try {
-        const result = await saveImageData();
+        const result = await saveImageData('uploads');
         console.log(result)
         return NextResponse.json({saved: result}, {status : 200});
     } catch (error) {
